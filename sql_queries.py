@@ -27,7 +27,7 @@ time_table_create = ("""CREATE TABLE IF NOT EXISTS time (start_time timestamp PR
 """)
 
 #Records in log data associated with song plays i.e. records with page NextSong
-songplay_table_create = ("""CREATE TABLE IF NOT EXISTS songplays (songplay_id SERIAL PRIMARY KEY, start_time timestamp REFERENCES time(start_time), user_id BIGINT REFERENCES "users"(user_id), level varchar, song_id varchar REFERENCES songs(song_id), artist_id varchar REFERENCES artists(artist_id), session_id int, location varchar, user_agent varchar);
+songplay_table_create = ("""CREATE TABLE IF NOT EXISTS songplays (songplay_id SERIAL PRIMARY KEY, start_time timestamp NOT NULL REFERENCES time(start_time), user_id BIGINT NOT NULL REFERENCES "users"(user_id), level varchar, song_id varchar REFERENCES songs(song_id), artist_id varchar REFERENCES artists(artist_id), session_id int  NOT NULL, location varchar, user_agent varchar, UNIQUE (start_time, user_id, session_id));
 """)
 
 # INSERT RECORDS
